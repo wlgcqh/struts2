@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+        
+<validators>
+	<field name="username">
+		<field-validator type="requiredstring">
+			<message>username can't null!</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">4</param>
+			<param name="maxLength">6</param>
+			<message>username should be ${minLength} ~ ${maxLength}!</message>
+		</field-validator>
+	
+	</field>
+	
+	<field name="password">
+		<field-validator type="requiredstring">
+			<message>password can't null!</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">4</param>
+			<param name="maxLength">6</param>
+			<message>password should be ${minLength} ~ ${maxLength}!</message>
+		</field-validator>
+	
+	</field>
+	
+	<field name="age">
+		<field-validator type="required">
+			<message>age can't null!</message>
+		</field-validator>
+		<field-validator type="int">
+			<param name="min">18</param>
+			<param name="max">100</param>
+			<message>age should be ${min} ~ ${max}!</message>
+		</field-validator>
+	</field>
+	
+	<field name="birthday">
+		<field-validator type="required">
+			<message>birthday can't null!</message>
+		</field-validator>
+		
+		<field-validator type="date">
+			<param name="min">2005-1-1</param>
+			<param name="max">2010-1-1</param>
+			<message>birthday should be ${min} ~ ${max}!</message>
+		</field-validator>
+	</field>
+	
+	<field name="graduation">
+		<field-validator type="required">
+			<message>graduation can't null!</message>
+		</field-validator>
+		
+		<field-validator type="date">
+			<param name="min">2005-1-1</param>
+			<param name="max">2010-1-1</param>
+			<message>graduation should be > birthday!</message>
+		</field-validator>
+	</field>
+
+</validators>
