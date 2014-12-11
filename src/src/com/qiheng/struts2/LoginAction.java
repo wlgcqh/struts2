@@ -2,6 +2,9 @@ package com.qiheng.struts2;
 
 import java.util.Date;
 
+import com.qiheng.DAO.IUserDAO;
+import com.qiheng.factory.UserDAOFactory;
+
 public class LoginAction {
 	private String username;
 	
@@ -10,6 +13,8 @@ public class LoginAction {
 	private int age;
 	
 	private Date date;
+
+	private IUserDAO userDAO;
 	
 	
 	
@@ -40,6 +45,20 @@ public class LoginAction {
 	
 	public String execute()
 	{
-		return "success";
+		
+		try{
+			userDAO = UserDAOFactory.getDAOInstance();
+			if(userDAO.isCorrect(username, password)){
+				return "success";
+			}
+		}catch (Exception e) {
+			System.out.println("error");
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return "error";
 	}
 }

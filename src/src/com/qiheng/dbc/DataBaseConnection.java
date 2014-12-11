@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataBaseConnection {
-	private static final String DBDRIVER = "org.git.mm.mysql.Driver";
+	private static final String DBDRIVER = "com.mysql.jdbc.Driver";
 	private static final String URL="jdbc:mysql://localhost:3306/qh";
 	private static final String DBUSER="root";
 	private static final String DBPASSWORD="admin";
@@ -16,7 +16,7 @@ public class DataBaseConnection {
 		try {
 			Class.forName(DBDRIVER);
 			this.conn = DriverManager.getConnection(URL, DBUSER, DBPASSWORD);
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

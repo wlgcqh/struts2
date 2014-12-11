@@ -1,11 +1,16 @@
 package com.qiheng.struts2;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.Calendar;
 import java.util.Date;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.qiheng.DAO.IUserDAO;
+import com.qiheng.bean.User;
 import com.qiheng.exception.PasswordException;
 import com.qiheng.exception.UsernameException;
+import com.qiheng.factory.UserDAOFactory;
 
 public class RegisterAction extends ActionSupport {
 	
@@ -18,6 +23,10 @@ public class RegisterAction extends ActionSupport {
 	private Date birthday;
 	
 	private Date graduation;
+	
+	private IUserDAO userDAO = null;
+	
+	
 
 	public String getUsername() {
 		return username;
@@ -62,16 +71,33 @@ public class RegisterAction extends ActionSupport {
 	
 	@Override
 	public String execute() throws Exception {
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setAge(age);
+		user.setBirthday(birthday);
+		user.setGraduation(graduation);
 		
-		if(!"hello".equals(username)){
-			throw new UsernameException("username invalid!");
+		System.out.println(user.getUsername());
+		System.out.println(user.getPassword());
+		System.out.println(user.getAge());
+		System.out.println(user.getBirthday());
+		System.out.println(user.getGraduation());
+		
+		try{
+			userDAO = UserDAOFactory.getDAOInstance();
+		}catch (Exception e) {
+			System.out.println("error");
+			e.printStackTrace();
+		}
+		if(userDAO.doCreate(user)){
+			return SUCCESS;
+		}else{
+			return ERROR;
 		}
 		
-		if(!"12345".equals(password)){
-			throw new PasswordException("password invalid!");
-		}
 		
-		return SUCCESS;
+		
 	}
 	
 //	@Override

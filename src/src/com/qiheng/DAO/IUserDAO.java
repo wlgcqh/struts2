@@ -6,6 +6,8 @@ public interface IUserDAO {
 	
 	public boolean doCreate(User user) throws Exception;
 	
-	public User findByUsername(String username);
+	public User findByUsername(String username) throws Exception;
+	
+	public boolean isCorrect(String username, String password) throws Exception;
 
 }
