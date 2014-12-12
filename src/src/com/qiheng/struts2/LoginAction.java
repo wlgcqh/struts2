@@ -2,6 +2,7 @@ package com.qiheng.struts2;
 
 import java.util.Date;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.qiheng.DAO.IUserDAO;
 import com.qiheng.factory.UserDAOFactory;
 
@@ -46,19 +47,19 @@ public class LoginAction {
 	public String execute()
 	{
 		
-		try{
-			userDAO = UserDAOFactory.getDAOInstance();
-			if(userDAO.isCorrect(username, password)){
-				return "success";
-			}
-		}catch (Exception e) {
-			System.out.println("error");
-			e.printStackTrace();
-		}
+//		try{
+//			userDAO = UserDAOFactory.getDAOInstance();
+//			if(userDAO.isCorrect(username, password)){
+//				return "success";
+//			}
+//		}catch (Exception e) {
+//			System.out.println("error");
+//			e.printStackTrace();
+//		}
+		
+		ActionContext.getContext().getSession().put("userinfo", username);
 		
 		
-		
-		
-		return "error";
+		return "success";
 	}
 }

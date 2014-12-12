@@ -5,10 +5,28 @@
 <struts>
 	<package name="struts2" extends="struts-default">
 	
+		<interceptors>
+		
+			<interceptor name="interceptor1" class="com.qiheng.interceptor.TheInterceptor1"></interceptor>		
+			<interceptor name="loginInterceptor" class="com.qiheng.interceptor.LoginInterceptor"></interceptor>
+			
+			<interceptor-stack name="MyInterceptorStack">
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="MyInterceptorStack"></default-interceptor-ref>
+		
+		<global-results>
+			<result name="login">/error.jsp</result>
+		</global-results>
 		<action name="login" class="com.qiheng.struts2.LoginAction">
 		
 			<result name="success">/result.jsp</result>
 			<result name="error">/LoginFailed.jsp</result> 
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			
 		</action>
 		
 		<action name="User" class="com.qiheng.struts2.UserAction">
