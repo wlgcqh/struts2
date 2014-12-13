@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'login.jsp' starting page</title>
+    <title>My JSP 'registerFailed.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,35 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <form action="login" method="post">
+    <h1><font color="red">username duplicated!</font></h1>
+    <a href="register.jsp">please register again!</a>
     
-    
-    username:<input type="text" name="username"><br>
-    password:<input type="password" name="password"><br>
-    
-    <input type="submit" value="submit">
-    
-    
-    
-    
-    
-    
-    </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </body>
 </html>
